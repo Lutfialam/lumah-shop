@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login - Lumah shop</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="assets/css/style.min.css" />
+        <link rel="stylesheet" href="assets/css/components.min.css" />
+        <link rel="stylesheet" href="assets/css/custom.css" />
+    </h:head>
+    <h:body>
+        <div id="app">
+            <section class="section">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="login-brand">
+                                <img src="assets/images/Logo.png" alt="logo" width="100" class="shadow-light rounded-circle" />
+                            </div>
+                
+                            <div class="card card-primary shadow-lg">
+                                <div class="card-header"><h4>Login</h4></div>
+                    
+                                <div class="card-body">
+                                    <h:form class="needs-validation">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <h:inputText value="#{users.email}" class="form-control" />
+                                            <div class="invalid-feedback">
+                                                Please fill in your email
+                                            </div>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <div class="d-block">
+                                                <label for="password" class="control-label">Password</label>
+                                            </div>
+                                            <h:inputSecret value="#{users.password}" class="form-control" />
+                                            <div class="invalid-feedback">
+                                                please fill in your password
+                                            </div>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <h:commandButton class="btn btn-primary btn-lg btn-block" value="Login" action="#{users.login()}" />
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                            <div class="mt-5 text-muted text-center">
+                                Don't have an account? <a href="register.xhtml">Create One</a>
+                            </div>
+                            <div class="simple-footer">
+                                Copyright &copy; Stisla 2018
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script src="assets/modules/jquery.min.js"></script>
+        <script src="assets/modules/popper.js"></script>
+        <script src="assets/modules/tooltip.js"></script>
+        <script src="assets/modules/select2/dist/js/select2.full.min.js"></script>
+        <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/stisla.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="assets/js/custom.js"></script>
+    </h:body>
+</html>
+

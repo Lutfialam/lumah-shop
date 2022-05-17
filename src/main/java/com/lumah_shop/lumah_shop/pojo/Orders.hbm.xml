@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2021 4:04:40 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Orders" table="orders" lazy="false" catalog="lumah_shop" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="products" class="pojo.Products" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="pojo.Users" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="quantity" type="int">
+            <column name="quantity" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="7" not-null="true" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" not-null="true" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

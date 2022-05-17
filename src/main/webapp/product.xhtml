@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Product | lumah shop</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/modules/select2/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="assets/css/style.min.css" />
+        <link rel="stylesheet" href="assets/css/components.min.css" />
+        <link rel="stylesheet" href="assets/css/custom.css" />
+    </h:head>
+    <h:body>
+        <div id="app">
+            <div class="main-wrapper main-wrapper-1">
+                <div class="navbar-bg"></div>
+                <nav class="navbar navbar-expand-lg main-navbar">
+                    <form class="form-inline mr-auto">
+                        <ul class="navbar-nav mr-3">
+                            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                        </ul>
+                    </form>
+                    <ul class="navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <h:graphicImage value="assets/images/default.png" class="rounded-circle mr-1" />
+                                <div class="d-sm-none d-lg-inline-block">Hi, <h:outputText value="#{users.getUserData().name}" /></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <h:form>
+                                    <h:commandLink action="profile.xhtml" class="dropdown-item has-icon">
+                                        <i class="far fa-user"></i> Profile
+                                    </h:commandLink>
+                                    <a href="features-profile.html" class="dropdown-item has-icon">
+                                    </a>
+                                    <a href="features-activities.html" class="dropdown-item has-icon">
+                                        <i class="fas fa-bolt"></i> Activities
+                                    </a>
+                                    <a href="features-settings.html" class="dropdown-item has-icon">
+                                        <i class="fas fa-cog"></i> Settings
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <h:commandLink action="#{users.logout()}" class="dropdown-item has-icon text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="main-sidebar sidebar-style-2">
+                    <aside id="sidebar-wrapper">
+                        <div class="sidebar-brand">
+                            <a href="dashboard.xhtml">Lumah</a>
+                        </div>
+                        <div class="sidebar-brand sidebar-brand-sm">
+                            <a href="dashboard.xhtml">LS</a>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">Dashboard</li>
+                            <li>
+                                <a class="nav-link" href="dashboard.xhtml">
+                                    <i class="fas fa-fire"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a class="nav-link" href="product.xhtml">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Product</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="category.xhtml">
+                                    <i class="fas fa-poll-h"></i>
+                                    <span>Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="order.xhtml">
+                                    <i class="fas fa-cart-arrow-down"></i>
+                                    <span>Order</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="user.xhtml">
+                                    <i class="fas fa-users"></i>
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>    
+                    </aside>
+                </div>
+
+                <div class="main-content">
+                    <section class="section">
+                        <div class="section-header">
+                            <h2>Product</h2>
+                        </div>
+                        <div class="section-body">
+                            <div class="card">
+                                <div class="card-header">
+                                  <h4>Data product</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between my-3">
+                                        <button data-toggle="modal" data-target="#mymodal" class="btn btn-primary" type="button">Add data</button>
+                                        <h:form>
+                                            <div class="d-flex align-items-center">
+                                                <h:inputText class="mr-2 form-control" value="#{products.search}" a:placeholder="Search" />
+                                                <div class="input-group-btn">
+                                                    <h:commandLink class="btn btn-primary" action="#{products.search()}">
+                                                        <i class="fas fa-search"></i> Search
+                                                    </h:commandLink>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                  <div class="table-responsive">
+                                      <h:dataTable class="table w-100" value="#{products.productList}" var="pro">
+                                        <h:column>
+                                            <f:facet name="header">Name</f:facet>
+                                            <h:outputText value="#{pro.name}" class="#{pro.stock > 0 ? '' : 'text-danger'}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Description</f:facet>
+                                            <h:outputText value="#{pro.description}" class="#{pro.stock > 0 ? '' : 'text-danger'}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">stock</f:facet>
+                                            <h:outputText value="#{pro.stock}" class="#{pro.stock > 0 ? '' : 'text-danger'}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">price</f:facet>
+                                            <h:outputText value="#{pro.price}" class="#{pro.stock > 0 ? '' : 'text-danger'}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Photo</f:facet>
+                                            <h:graphicImage value="assets/images/#{pro.photo}" class="img-thumbnail m-2" width="75"></h:graphicImage>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Category</f:facet>
+                                            <h:outputText value="#{pro.categories.name}" class="#{pro.stock > 0 ? '' : 'text-danger'}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Actions</f:facet>
+                                            <h:form class="d-flex">
+<!--                                                <h:commandButton class="btn btn-primary mr-2" value="Edit">
+                                                    <f:ajax listener="#{products.getById(pro.id)}" onevent="showModal" />
+                                                </h:commandButton> -->
+<h:commandButton class="btn btn-primary mr-2" value="Edit" action="#{products.getById(pro.id)}" />
+                                                
+                                                <h:commandButton action="#{products.delete(pro.id)}" class="btn btn-danger" value="Delete" />
+                                            </h:form>
+                                        </h:column>
+                                    </h:dataTable>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal" id="mymodal">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <h:inputText class="form-control name" a:placeholder="Name" value="#{products.name}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <h:inputTextarea class="form-control" a:placeholder="Description" value="#{products.description}" />
+                            </div>
+                            <div class="form-group">
+                                <label>Stock</label>
+                                <h:inputText class="form-control" a:placeholder="Stock" value="#{products.stock}">
+                                    <f:convertNumber integerOnly="true" type="number" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <h:inputText class="form-control" a:placeholder="Price" value="#{products.price}">
+                                    <f:convertNumber integerOnly="true" type="number" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <h:selectOneMenu class="form-control select2" id="select2insidemodal" value="#{products.category_id}">
+                                    <f:selectItems value="#{products.allCategory}" var="cat" itemValue="#{cat.id}" itemLabel="#{cat.name}" />
+                                </h:selectOneMenu> 			
+                            </div>
+                            <div class="form-group">
+                                <h:inputFile class="form-control" value="#{products.photoPart}" />
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-primary">Save</button> -->
+                            <h:commandButton class="btn btn-primary" value="Save" action="#{products.store()}" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/modules/jquery.min.js"></script>
+        <script src="assets/modules/popper.js"></script>
+        <script src="assets/modules/tooltip.js"></script>
+        <script src="assets/modules/select2/dist/js/select2.full.min.js"></script>
+        <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/stisla.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="assets/js/custom.js"></script>
+    </h:body>
+</html>

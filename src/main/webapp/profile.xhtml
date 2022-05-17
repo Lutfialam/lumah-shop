@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Profile - Lumah shop</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="assets/css/style.min.css" />
+        <link rel="stylesheet" href="assets/css/components.min.css" />
+        <link rel="stylesheet" href="assets/css/custom.css" />
+
+        <style>
+            .banner {
+                width: 100%; 
+                height: 24rem;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/banner.png');
+                background-position: center;
+                object-fit: scale-down;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div id="app">
+            <div class="main-wrapper main-wrapper-1">
+                <div class="navbar-bg"></div>
+                <nav class="navbar navbar-expand-lg main-navbar">
+                    <form class="form-inline mr-auto">
+                        <ul class="navbar-nav mr-3">
+                            <li>
+                                <!-- <h:form>
+                                    <h:commandLink a:data-toggle="sidebar" class="nav-link nav-link-lg"> 
+                                        <i class="fas fa-bars"></i>
+                                    </h:commandLink>
+                                </h:form> -->
+                                <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                            </li>
+                        </ul>
+                    </form>
+                    <ul class="navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <h:graphicImage value="assets/images/default.png" class="rounded-circle mr-1" />
+                                <div class="d-sm-none d-lg-inline-block">Hi, <h:outputText value="#{users.getUserData().name}" /></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <h:form>
+                                    <h:commandLink action="profile.xhtml" class="dropdown-item has-icon">
+                                        <i class="far fa-user"></i> Profile
+                                    </h:commandLink>
+                                     
+                                    <div class="dropdown-divider"></div>
+                                    <h:commandLink action="#{users.logout()}" class="dropdown-item has-icon text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="main-sidebar sidebar-style-2">
+                    <aside id="sidebar-wrapper">
+                        <div class="sidebar-brand">
+                            <a href="dashboard.xhtml">Lumah</a>
+                        </div>
+                        <div class="sidebar-brand sidebar-brand-sm">
+                            <a href="dashboard.xhtml">LS</a>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">Dashboard</li>
+                            <li>
+                                <a class="nav-link" href="dashboard.xhtml">
+                                    <i class="fas fa-fire"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a class="nav-link" href="product.xhtml">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Product</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="category.xhtml">
+                                    <i class="fas fa-poll-h"></i>
+                                    <span>Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="order.xhtml">
+                                    <i class="fas fa-cart-arrow-down"></i>
+                                    <span>Order</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="user.xhtml">
+                                    <i class="fas fa-users"></i>
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>    
+                    </aside>
+                </div>
+
+                <div class="banner"></div>
+                <div class="main-content">
+                    <section class="section">
+                        <div class="section-body">
+                            <div class="container">
+                                <div class="card profile-form shadow-lg">
+                                    <div class="card-body">
+                                        <h:form enctype="multipart/form-data">
+                                            <div class="row h-100">
+                                                <div class="col-lg-4 m-auto text-center">
+                                                    <label for="gambar">
+                                                        <h:graphicImage value="assets/images/default.png" class="shadow-lg img-thumbnail" style="object-fit:cover; width: 20rem; height:20rem;" id="preview-image" />
+                                                    </label>
+                                                    <input type="file" class="d-none" name="photo" accept="image/*" id="gambar" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])" />
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h1 class="mb-3">Profile</h1>
+                                                    
+                                                    <div class="form-group text-left">
+                                                        <label>NAME</label>
+                                                        <h:inputText class="form-control" value="#{users.getUserData().name}"/>
+                                                    </div>
+                                            
+                                                    <div class="form-group text-left">
+                                                        <label>E-MAIL</label>
+                                                        <h:inputText class="form-control" value="#{users.getUserData().email}"/>
+                                                    </div>
+        
+                                                    <!-- <div class="row">
+                                                        <div class="col-lg-8"></div>
+                                                        <div class="col-md-4">
+                                                            <button class="btn btn-primary btn-md btn-block p-2" type="submit">SAVE</button>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="assets/modules/jquery.min.js"></script>
+        <script src="assets/modules/popper.js"></script>
+        <script src="assets/modules/tooltip.js"></script>
+        <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/stisla.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="assets/js/custom.js"></script>
+
+        <script>
+            const preview = () => {
+                const gambar = document.getElementById("gambar")
+                const preview = document.getElementsByClassName("preview-image");
+    
+                console.log(gambar);
+                
+                const fileGambar = new FileReader();
+                fileGambar.readAsDataURL(gambar.files[0]);
+    
+                fileGambar.onload = (e) => {
+                    preview.src = e.target.result;
+                };
+            }
+        </script>
+    </h:body>
+</html>
+
